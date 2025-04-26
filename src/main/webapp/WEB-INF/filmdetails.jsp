@@ -9,12 +9,8 @@
 </head>
 <body>
 
-<h1>Welcome to Film Site</h1>
-<form action="GetFilm.do" method="GET">
-	Film ID:
-	<input type="text" name="filmid" />
-	<input type="submit" value= "Find Film by ID" />
-</form>
+<h1>${ film.title }</h1>
+
 
 
 </body>
