@@ -10,8 +10,9 @@ public interface FilmDAO {
   public Actor findActorById(int actorId);
   public List<Actor> findActorsByFilmId(int filmId);
   public List<Film> findFilmByKeyword(String keyword);
-  public String findCategoryByFilmId(int filmid);
-  public List<String> findFilmCopiesByFilmId(int filmId);
-  public Film createFilm(Film film);
+  public List<String> findCategoriesByFilmId(int filmid);
+  public List<String> findRentalCopiesByFilmId(int filmId);
+  public Film addFilm(Film film);
+  public Film updateFilm(Film film);
   public void deleteFilm(Film film);
 }
