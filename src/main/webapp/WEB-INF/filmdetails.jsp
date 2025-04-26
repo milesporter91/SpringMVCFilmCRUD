@@ -14,7 +14,7 @@
 		</c:when>
 		<c:when test="${not empty films }">
 		<ul>
-			<c:forEach var="film" items="${ foundFilms}">
+			<c:forEach var="film" items="${ films}">
 			<li>
 			<h1>${ film.title }</h1>
 			<h1>Plot: ${ film.description }</h1>
