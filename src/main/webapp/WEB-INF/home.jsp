@@ -10,10 +10,16 @@
 <body>
 
 <h1>Welcome to Film Site</h1>
-<form action="GetFilm.do" method="GET">
+<form action="GetFilmById.do" method="GET">
 	Film ID:
 	<input type="text" name="filmid" />
 	<input type="submit" value= "Find Film by ID" />
+</form>
+<form action="GetFilmByKeyword.do">
+	Keyword:
+	<input type="text" name="keyword"/>
+	<input type="submit" value= "Find Film by Keyword" />
+
 </form>
 
 
