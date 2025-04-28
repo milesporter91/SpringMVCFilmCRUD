@@ -52,7 +52,7 @@ public class FilmController {
 
     // POST form submission and add new film
     @RequestMapping(path = "addFilm.do", method = RequestMethod.POST)
-    public String addFilm(@ModelAttribute("film") Film newFilm, Model model) {
+    public String addFilm(Film newFilm, Model model) {
         Film addedFilm = filmDao.addFilm(newFilm);
 
         if (addedFilm == null) {

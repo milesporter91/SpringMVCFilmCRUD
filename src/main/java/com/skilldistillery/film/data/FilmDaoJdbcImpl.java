@@ -230,7 +230,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 
 	@Override
 	public Film addFilm(Film newFilm) {
-		String sql = "INSERT INTO film (title, description, language_id, rental_duration, rental_rate, length, replacement_cost, rating, special_features)"
+		String sql = "INSERT INTO film (title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating, special_features)"
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		Connection conn = null;
 		try {
