@@ -66,12 +66,23 @@ public class FilmController {
 
     // DELETE FILM
     
-    @RequestMapping(path="deleteFilm.do", method= RequestMethod.POST)
-    public void deleteFilm(Film filmToDelete) {
-    	filmDao.deleteFilm(filmToDelete);
-    	if (filmToDelete == null) {
-    		System.err.println("Film deleted.");
+    @RequestMapping(path="deleteFilm.do")
+    public String deleteFilm(Model model, @RequestParam("filmId") int filmId) {
+    	Film filmToDelete = filmDao.findFilmById(filmId);
+    	if (filmId > 1000) {
+    		if (filmToDelete != null) {
+    			filmDao.deleteFilm(filmToDelete);
+    			model.addAttribute("message", "Film deleted.");
+    		} 
+    		else {
+    			model.addAttribute("message", "Film not found, nothing deleted.");
+    		}
     	}
+    	else {
+    		model.addAttribute("message", "Cannot delete films with dependencies.");
+    	}
+    	return "home";
     }
+
     
 }

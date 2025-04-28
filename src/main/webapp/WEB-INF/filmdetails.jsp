@@ -38,6 +38,7 @@
 		<c:otherwise>
 			<h1>${ film.title }</h1>
 			<h1>Plot: ${ film.description }</h1>
+			<h2>Film ID: ${ film.id }</h2>
 			<h2>Rating: ${ film.rating }</h2>
 			<h2>Release Year: ${ film.releaseYear }</h2>
 			<h2>Language ID: ${ film.languageId }</h2>
@@ -50,7 +51,8 @@
 			<h2>Rental Rate: ${ film.rentalRate }</h2>
 			<h2>Replacement Cost: ${ film.replacementCost }</h2>
 			<h2>Rentals Copies: ${ film.rentalCopiesList }</h2>
-			<form action="deleteFilm.do" method="GET">
+			<form action="deleteFilm.do" method="POST">
+			<input type="hidden" name="filmId" value="${film.id }" />
 			<input type="submit" value ="Delete this film" />
 			</form>
 		</c:otherwise>

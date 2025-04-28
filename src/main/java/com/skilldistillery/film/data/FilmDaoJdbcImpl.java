@@ -238,7 +238,6 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			conn.setAutoCommit(false); // Start transaction
 			PreparedStatement st = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			st.setString(1, newFilm.getTitle());
-			st.setString(1, newFilm.getTitle());
 			st.setString(2, newFilm.getDescription());
 			st.setInt(3, newFilm.getReleaseYear());
 			st.setInt(4, newFilm.getLanguageId());
@@ -256,7 +255,6 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			if (keys.next()) {
 				int newFilmId = keys.getInt(1);
 				newFilm.setId(newFilmId);
-				System.out.println("New film ID: " + newFilmId);
 			}
 			conn.commit();
 		} catch (SQLException e) {
@@ -300,9 +298,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			conn.setAutoCommit(false); // Start transaction
 			PreparedStatement st = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			st.setObject(1, filmToDelete.getId());
-			int updateCount = st.executeUpdate();
-			System.out.println(updateCount + " film deleted.");
-			System.out.println();
+			st.executeUpdate();
 			conn.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
