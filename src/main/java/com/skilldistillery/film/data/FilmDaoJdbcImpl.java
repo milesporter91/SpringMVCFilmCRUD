@@ -38,10 +38,12 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			// Extract results
 			ResultSet filmData = pst.executeQuery();
 			if (filmData.next()) {
-			foundFilm = new Film(filmData.getInt("id"), filmData.getString("title"), filmData.getString("description"),
-					filmData.getInt("release_year"), filmData.getInt("language_id"), filmData.getInt("rental_duration"),
-					filmData.getDouble("rental_rate"), filmData.getInt("length"), filmData.getDouble("replacement_cost"),
-					filmData.getString("rating"), filmData.getString("special_features"), actorList, language, categories, rentalCopiesList);
+				foundFilm = new Film(filmData.getInt("id"), filmData.getString("title"),
+						filmData.getString("description"), filmData.getInt("release_year"),
+						filmData.getInt("language_id"), filmData.getInt("rental_duration"),
+						filmData.getDouble("rental_rate"), filmData.getInt("length"),
+						filmData.getDouble("replacement_cost"), filmData.getString("rating"),
+						filmData.getString("special_features"), actorList, language, categories, rentalCopiesList);
 			}
 			filmData.close();
 			pst.close();
@@ -68,7 +70,8 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			// Extract results
 			ResultSet actorData = pst.executeQuery();
 			actorData.next();
-			foundActor = new Actor(actorData.getInt("a.id"), actorData.getString("a.first_name"), actorData.getString("a.last_name"));
+			foundActor = new Actor(actorData.getInt("a.id"), actorData.getString("a.first_name"),
+					actorData.getString("a.last_name"));
 			pst.close();
 			conn.close();
 
@@ -77,6 +80,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		}
 		return foundActor;
 	}
+
 	@Override
 	public List<String> findCategoriesByFilmId(int filmId) {
 		List<String> categoriesOfFilm = new LinkedList<>();
@@ -86,8 +90,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
 			// Prepare statement
-			String sql = " SELECT c.name "
-					+ "FROM category c JOIN film_category fc ON c.id = fc.category_id "
+			String sql = " SELECT c.name " + "FROM category c JOIN film_category fc ON c.id = fc.category_id "
 					+ "JOIN film f ON fc.film_id = f.id WHERE f.id = ?";
 			PreparedStatement pst = conn.prepareStatement(sql);
 			pst.setInt(1, filmId);
@@ -105,6 +108,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		}
 		return categoriesOfFilm;
 	}
+
 	@Override
 	public List<Actor> findActorsByFilmId(int filmId) {
 		List<Actor> actorsInFilm = new LinkedList<>();
@@ -121,7 +125,8 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			// Extract results
 			ResultSet actorData = pst.executeQuery();
 			while (actorData.next()) {
-				foundActor = new Actor(actorData.getInt("a.id"), actorData.getString("a.first_name"), actorData.getString("a.last_name"));
+				foundActor = new Actor(actorData.getInt("a.id"), actorData.getString("a.first_name"),
+						actorData.getString("a.last_name"));
 				actorsInFilm.add(foundActor);
 			}
 			actorData.close();
@@ -132,7 +137,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		}
 		return actorsInFilm;
 	}
-	
+
 	public List<Film> findFilmByKeyword(String keyword) {
 		List<Film> foundFilms = new LinkedList<>();
 		Film foundFilm;
@@ -151,17 +156,17 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 				List<String> categories = findCategoriesByFilmId(filmId);
 				List<String> filmCopiesList = findRentalCopiesByFilmId(filmId);
 				String language = findLanguageByFilmId(filmId);
-			foundFilm = new Film(filmData.getInt("id"), filmData.getString("title"), filmData.getString("description"),
-					filmData.getInt("release_year"), filmData.getInt("language_id"), filmData.getInt("rental_duration"),
-					filmData.getDouble("rental_rate"), filmData.getInt("length"), filmData.getDouble("replacement_cost"),
-					filmData.getString("rating"), filmData.getString("special_features"), actorList, language, categories, filmCopiesList);
-			foundFilms.add(foundFilm);
+				foundFilm = new Film(filmData.getInt("id"), filmData.getString("title"),
+						filmData.getString("description"), filmData.getInt("release_year"),
+						filmData.getInt("language_id"), filmData.getInt("rental_duration"),
+						filmData.getDouble("rental_rate"), filmData.getInt("length"),
+						filmData.getDouble("replacement_cost"), filmData.getString("rating"),
+						filmData.getString("special_features"), actorList, language, categories, filmCopiesList);
+				foundFilms.add(foundFilm);
 			}
 			filmData.close();
 			pst.close();
 			conn.close();
-			
-	
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -169,7 +174,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		return foundFilms;
 
 	}
-	
+
 	public String findLanguageByFilmId(int filmId) {
 		String language = null;
 		try {
@@ -183,7 +188,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			// Extract results
 			ResultSet languageData = pst.executeQuery();
 			while (languageData.next()) {
-			language = languageData.getString("name");
+				language = languageData.getString("name");
 			}
 			languageData.close();
 			pst.close();
@@ -192,10 +197,10 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return language;
 	}
-	
+
 	public List<String> findRentalCopiesByFilmId(int filmId) {
 		List<String> rentalCopiesList = new LinkedList<>();
 		String rentalCopy;
@@ -210,7 +215,8 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			// Extract results
 			ResultSet rentalCopyData = pst.executeQuery();
 			while (rentalCopyData.next()) {
-				rentalCopy = "Rental ID: " + rentalCopyData.getString("i.id") + " Rental Condition: " + rentalCopyData.getString("i.media_condition");
+				rentalCopy = "Rental ID: " + rentalCopyData.getString("i.id") + " Rental Condition: "
+						+ rentalCopyData.getString("i.media_condition");
 				rentalCopiesList.add(rentalCopy);
 			}
 			rentalCopyData.close();
@@ -224,42 +230,51 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 
 	@Override
 	public Film addFilm(Film newFilm) {
-		 String sql = "INSERT INTO film (title, language_id) "
-	    			+ "VALUES (?,?);";
-	    Connection conn = null;
-	    try {
-	      conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-	      conn.setAutoCommit(false); // Start transaction
-	      PreparedStatement st = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-	      st.setObject(1, newFilm.getTitle());
-	      st.setObject(2, newFilm.getLanguageID());
-	      int updateCount = st.executeUpdate();
-	      System.out.println(updateCount + " film records created.");
-	      // Now get the auto-generated actor IDs:
-	      ResultSet keys = st.getGeneratedKeys();
-	      if (keys.next()) {
-	    	  int newFilmId = keys.getInt(1);
-	    	  newFilm.setId(newFilmId);
-	        System.out.println("New film ID: " + newFilmId);
-	      }
-	      conn.commit();
-	    }
-	    catch (SQLException e) {
-	      e.printStackTrace();
-	    }		return newFilm;
+		String sql = "INSERT INTO film (title, description, language_id, rental_duration, rental_rate, length, replacement_cost, rating, special_features)"
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+		Connection conn = null;
+		try {
+			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn.setAutoCommit(false); // Start transaction
+			PreparedStatement st = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			st.setString(1, newFilm.getTitle());
+			st.setString(1, newFilm.getTitle());
+			st.setString(2, newFilm.getDescription());
+			st.setInt(3, newFilm.getReleaseYear());
+			st.setInt(4, newFilm.getLanguageId());
+			st.setInt(5, newFilm.getRentalDuration());
+			st.setDouble(6, newFilm.getRentalRate());
+			st.setInt(7, newFilm.getLength());
+			st.setDouble(8, newFilm.getReplacementCost());
+			st.setString(9, newFilm.getRating());
+			st.setString(10, newFilm.getSpecialFeatures());
+			
+			int updateCount = st.executeUpdate();
+			System.out.println(updateCount + " film records created.");
+			// Now get the auto-generated actor IDs:
+			ResultSet keys = st.getGeneratedKeys();
+			if (keys.next()) {
+				int newFilmId = keys.getInt(1);
+				newFilm.setId(newFilmId);
+				System.out.println("New film ID: " + newFilmId);
+			}
+			conn.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return newFilm;
 	}
 
 	@Override
 	public Film updateFilm(Film updatingFilm) {
-		String sql = "UPDATE film SET  "
-				+ "WHERE id = ?;";
+		String sql = "UPDATE film SET  " + "WHERE id = ?;";
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			conn.setAutoCommit(false); // Start transaction
 			PreparedStatement st = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			st.setObject(1, updatingFilm.getTitle());
-			st.setObject(2, updatingFilm.getLanguageID());
+			st.setObject(2, updatingFilm.getLanguageId());
 			int updateCount = st.executeUpdate();
 			System.out.println(updateCount + " film updated.");
 			// Now get the auto-generated actor IDs:
@@ -270,16 +285,15 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 				System.out.println("New film ID: " + newFilmId);
 			}
 			conn.commit();
-		}
-		catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}		return updatingFilm;
+		}
+		return updatingFilm;
 	}
 
 	@Override
 	public void deleteFilm(Film filmToDelete) {
-		String sql = "DELETE FROM film "
-				+ "WHERE film.id = ?;";
+		String sql = "DELETE FROM film " + "WHERE film.id = ?;";
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
@@ -290,11 +304,11 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			System.out.println(updateCount + " film deleted.");
 			System.out.println();
 			conn.commit();
-		}
-		catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}	
+		}
 	}
+
 	static {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");

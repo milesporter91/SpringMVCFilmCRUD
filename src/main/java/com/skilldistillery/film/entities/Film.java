@@ -9,7 +9,7 @@ public class Film {
 	private String title;
 	private String description;
 	private int releaseYear;
-	private Integer languageID;
+	private Integer languageId;
 	private Integer rentalDuration;
 	private Double rentalRate;
 	private int length;
@@ -30,7 +30,7 @@ public class Film {
 		this.title = title;
 		this.description = description;
 		this.releaseYear = releaseYear;
-		this.languageID = languageID;
+		this.languageId = languageID;
 		this.rentalDuration = rentalDuration;
 		this.rentalRate = rentalRate;
 		this.length = length;
@@ -80,12 +80,12 @@ public class Film {
 		this.releaseYear = releaseYear;
 	}
 
-	public Integer getLanguageID() {
-		return languageID;
+	public Integer getLanguageId() {
+		return languageId;
 	}
 
-	public void setLanguageID(Integer languageID) {
-		this.languageID = languageID;
+	public void setLanguageId(Integer languageID) {
+		this.languageId = languageID;
 	}
 
 	public Integer getRentalDuration() {
@@ -173,7 +173,7 @@ public class Film {
 	@Override
 	public String toString() {
 		return "Film ID: " + id + " | Title: " + title + " | Description: " + description + " | Release Year: " + releaseYear
-				+ " | Language ID: " + languageID + " | Rental Duration: " + rentalDuration + " | Rental Rate: " + rentalRate
+				+ " | Language ID: " + languageId + " | Rental Duration: " + rentalDuration + " | Rental Rate: " + rentalRate
 				+ " | Length: " + length + " | Replacement Cost: " + replacementCost + " Rating: " + rating
 				+ " | Special Features: " + specialFeatures + " | Actors: " + actorList;
 	}

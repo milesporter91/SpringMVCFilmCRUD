@@ -20,7 +20,7 @@
 			<h1>Plot: ${ film.description }</h1>
 			<h2>Rating: ${ film.rating }</h2>
 			<h2>Release Year: ${ film.releaseYear }</h2>
-			<h2>Language ID: ${ film.languageID }</h2>
+			<h2>Language ID: ${ film.languageId }</h2>
 			<h2>Language: ${ film.language }</h2>
 			<h2>Categories: ${ film.categories }</h2>
 			<h2>Special Features: ${ film.specialFeatures }</h2>
@@ -39,7 +39,7 @@
 			<h1>Plot: ${ film.description }</h1>
 			<h2>Rating: ${ film.rating }</h2>
 			<h2>Release Year: ${ film.releaseYear }</h2>
-			<h2>Language ID: ${ film.languageID }</h2>
+			<h2>Language ID: ${ film.languageId }</h2>
 			<h2>Language: ${ film.language }</h2>
 			<h2>Categories: ${ film.categories }</h2>
 			<h2>Special Features: ${ film.specialFeatures }</h2>
