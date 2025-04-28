@@ -64,4 +64,14 @@ public class FilmController {
         }
     }
 
+    // DELETE FILM
+    
+    @RequestMapping(path="deleteFilm.do", method= RequestMethod.POST)
+    public void deleteFilm(Film filmToDelete) {
+    	filmDao.deleteFilm(filmToDelete);
+    	if (filmToDelete == null) {
+    		System.err.println("Film deleted.");
+    	}
+    }
+    
 }

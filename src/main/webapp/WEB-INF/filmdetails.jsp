@@ -33,6 +33,7 @@
 			</li>
 			</c:forEach>
 			</ul>
+		
 		</c:when>
 		<c:otherwise>
 			<h1>${ film.title }</h1>
@@ -49,6 +50,9 @@
 			<h2>Rental Rate: ${ film.rentalRate }</h2>
 			<h2>Replacement Cost: ${ film.replacementCost }</h2>
 			<h2>Rentals Copies: ${ film.rentalCopiesList }</h2>
+			<form action="deleteFilm.do" method="GET">
+			<input type="submit" value ="Delete this film" />
+			</form>
 		</c:otherwise>
 	</c:choose>
 
